@@ -1,14 +1,14 @@
 <?php
-function getRandomPassword($length) {
-    $my_string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!?@#$%"£&/()=^[]{}°-_:.;,<>';
-    $a = '';
-    while ($a <= $my_string) {
-        $random_num = rand(0, $length - 1);
-        $random_string = $my_string[$random_num];
+    function getRandomPassword($length) {
+        $my_string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!?@#$%"£&/()=^[]{}°-_:.;,<>';
+        $random_string = '';
+        while ($length > 0) {
+            $random_num = rand(0, strlen($my_string) - 1);
+            $random_string .= $my_string[$random_num];
+            $length--;
+        }
+        return $random_string;
     }
-    return $random_string;
-}
-
 ?>
 
 
@@ -30,20 +30,18 @@ function getRandomPassword($length) {
     </header>
     <main>
         <div class="container mt-5">
-            <form action="<?php $_SERVER['PHP_SELF']?>" class="mt-5 small">
+            <form action="<?php echo $_SERVER['PHP_SELF']?>" class="mt-5 small">
                 <div class="form-floating">
-                    <input name="password" type="password" class="form-control" id="password" placeholder="password" minlength="8" maxlength="32" required>
-                    <label for="password">Enter your password!</label>
+                    <input name="password" type="number" class="form-control" id="password" placeholder="password" required>
+                    <label for="password">Enter your password number!</label>
                 </div>
+                <input type="submit" value="Create password!" class="btn btn-outline-dark mt-5">
+                <?php if (!empty($_GET['password'])) {
+                    $length = $_GET['password'];
+                    $random_string = getRandomPassword($length);
+                } ?>
             </form>
             <div class="mt-5">
-                <h2>
-                    <?php if (!empty($_GET['password'])) {
-                        $password = $_GET['password'];
-                        $length = strlen($password);
-                    }?>
-                    Your password length: <?php echo $length ?>
-                </h2>
                 <h2>Your new password: <?php echo $random_string ?></h2>
             </div>
         </div>

@@ -23,7 +23,7 @@
         <div class="container mt-5">
             <form action="<?php echo $_SERVER['PHP_SELF']?>" class="mt-5 small">
                 <div class="form-floating">
-                    <input name="password" type="number" class="form-control" id="password" placeholder="password" required>
+                    <input type="number" class="form-control" id="password" name="password" min="8" max="32" required>
                     <label for="password">Enter your password number!</label>
                 </div>
                 <input type="submit" value="Create password!" class="btn btn-outline-dark mt-5">

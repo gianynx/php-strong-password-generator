@@ -1,17 +1,13 @@
 <?php
-if (!empty($_GET['password'])) {
-    $password = $_GET['password'];
-    $length = strlen($password);
-}
 function getRandomPassword($length) {
     $my_string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!?@#$%"£&/()=^[]{}°-_:.;,<>';
     $a = '';
-    while ($a <= $length) {
-        $random_string = rand(0, $my_string);
+    while ($a <= $my_string) {
+        $random_num = rand(0, $length - 1);
+        $random_string = $my_string[$random_num];
     }
     return $random_string;
 }
-$strong_password = getRandomPassword($random_string);
 
 ?>
 
@@ -41,12 +37,19 @@ $strong_password = getRandomPassword($random_string);
                 </div>
             </form>
             <div class="mt-5">
-                <h2>Strong Password: <?php echo $strong_password ?></h2>
+                <h2>
+                    <?php if (!empty($_GET['password'])) {
+                        $password = $_GET['password'];
+                        $length = strlen($password);
+                    }?>
+                    Your password length: <?php echo $length ?>
+                </h2>
+                <h2>Your new password: <?php echo $random_string ?></h2>
             </div>
         </div>
     </main>
     <footer>
-        <div class="container d-flex flex-row-reverse">
+        <div class="container d-flex flex-row-reverse mt-5">
             <span>"Homemade"</span>
         </div>
     </footer>

@@ -23,6 +23,7 @@
         <div class="container mt-5">
             <form action="<?php echo $_SERVER['PHP_SELF']?>" class="mt-5 small">
                 <div class="form-floating">
+                    <!--  Gli attributi min e max specificano i valori minimi e massimi che l'utente può inserire. Nel tuo caso, l'utente può inserire un valore tra 8 e 32. -->
                     <input type="number" class="form-control" id="password" name="password" min="8" max="32" required>
                     <label for="password">Enter your password number!</label>
                 </div>
